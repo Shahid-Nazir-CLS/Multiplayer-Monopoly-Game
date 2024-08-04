@@ -1,0 +1,43 @@
+/* Remove bullets from the list */
+ul#gamesList {
+  list-style-type: none;
+  padding: 0;
+}
+
+#users-history-container-div{
+  min-width: 90%;
+}
+
+/* Container for the users list */
+.users-list-container {
+  max-height: 800px; /* Set the maximum height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding-right: 15px; /* Optional: Add right padding for scrollbar */
+}
+/* Style the game item buttons */
+.game-item,
+.leader-item {
+  display: block;
+  width: 100%;
+  background-color: #f9f9f9;
+  border: none;
+  padding: 10px;
+  margin: 5px 0;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1.2rem; /* Set font size for the button text */
+}
+
+.game-item:hover,
+.leader-item:hover {
+  background-color: #ececec;
+}
+
+/* Adjust the font size of individual elements if needed */
+.game-item .opponent-name,
+.game-item .game-status,
+.game-item .play-time,
+.leader-stats {
+  font-size: 1.2rem; /* Same as the button or adjust individually */
+}

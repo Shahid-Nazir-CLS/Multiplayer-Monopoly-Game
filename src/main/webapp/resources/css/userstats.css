@@ -1,0 +1,38 @@
+.user-stats {
+    background-color: #1e1e1e;;
+    /* border: 1px solid #ddd; */
+    color: #fff;
+    /* border-radius: 8px; */
+    padding: 20px;
+    width: 430px;
+    font-size: 1.2rem;
+    margin: auto;
+    /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); */
+    font-family: Arial, sans-serif;
+}
+
+.user-stats h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.stats-header, .stats-body, .stats-footer {
+    margin-bottom: 15px;
+}
+
+.stats-header div, .stats-body div, .stats-footer div {
+    margin-bottom: 10px;
+}
+
+strong {
+    color: #ffffff;
+}
+
+span {
+    color: #ffffff;
+}
+
+.nickname, .fullname, .games-played, .wins, .losses, .draws, .joined-on, .last-online, .status {
+    display: flex;
+    justify-content: space-between;
+}

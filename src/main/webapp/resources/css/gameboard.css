@@ -1,0 +1,78 @@
+        .image-container {
+            position: relative;
+            /* Parent should be relatively positioned */
+            display: inline-block;
+            /* Shrink to fit content */
+        }
+
+        .overlay-container {
+            position: absolute;
+            /* Position absolutely within the parent */
+            top: 120px;
+            /* Align to top */
+            left: 135px;
+            /* Align to left */
+            width: 70%;
+            /* Full width of the parent */
+            display: flex;
+            /* Flexbox layout */
+            justify-content: space-between;
+            /* Space between items */
+        }
+
+        .overlay-item {
+            border: 1px solid rgb(0, 0, 0);
+            /* Add border */
+            padding: 5px;
+            /* Add padding */
+            text-align: center;
+            /* Center text */
+            flex: 1;
+            /* Distribute space evenly among items */
+            /* background: rgba(255, 255, 255, 0.7); */
+            min-height: 550px;
+            /* Semi-transparent background */
+            font-size: 1.0rem;
+            font-weight: bold;
+        }
+
+        .money {
+            color: black;
+        }
+
+        img {
+            display: block;
+            /* Removes bottom margin/whitespace */
+            max-width: 100%;
+            /* Responsive image */
+        }
+
+        .token {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+        }
+
+        #token1 {
+            top: 703px;
+            left: 770px;
+            background-color: red;
+        }
+
+        #token2 {
+            top: 720px;
+            left: 770px;
+            background-color: blue;
+        }
+
+        #token3 {
+            top: 737px;
+            left: 770px;
+            background-color: green;
+        }
+
+        #token4 {
+            top: 754px;
+            left: 770px;
+            background-color: yellow;
+        }
