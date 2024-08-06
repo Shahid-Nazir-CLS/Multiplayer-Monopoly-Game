@@ -104,6 +104,7 @@ This is a multiplayer online Monopoly game developed using Java, Spring Boot, We
   - The login page serves both as signup and login.
 
 ## Screenshots of gameplay
-![screenshot](monopoly_sc1.png)
 
 ![screenshot](monopolysc2.png)
+
+![screenshot](monopoly_sc1.png)
