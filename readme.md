@@ -28,41 +28,30 @@ This is a multiplayer online Monopoly game developed using Java, Spring Boot, We
 
 ### Prerequisites
 
-- Java 8 or later
+- Java 21 or later
 - Docker
 - MongoDB
 
 ### Steps
 
 1. **Clone the repository**:
+    ```sh
+    git clone https://github.com/yourusername/multiplayer-monopoly.git
+    cd multiplayer-monopoly
+    ```
 
-   ```sh
-   git clone https://github.com/yourusername/multiplayer-monopoly.git
-   cd multiplayer-monopoly
-   ```
+2. **Run the application using an IDE**:
+    - Open the project in VSCode or IntelliJ.
+    - Run the application using the embedded Tomcat server.
 
-2. **Build the project**:
-
-   ```sh
-   ./mvnw clean install
-   ```
-
-3. **Run the application**:
-
-   ```sh
-   java -jar target/tictactoe-0.0.1-SNAPSHOT.jar
-   ```
-
-4. **Run MongoDB**:
-
-   ```sh
-   docker run -d -p 27017:27017 --name mongodb mongo
-   ```
-
-5. **Run the application with Docker**:
-   ```sh
-   docker-compose up --build
-   ```
+3. **Run the application using Docker**:
+    - **Pull the Docker image**:
+      ```sh
+      docker pull shahid1177/monopoly:latest
+      ```
+    - **Run the Docker container**:
+      ```sh
+      docker run -d -p 8080:8080 --name monopoly shahid1177/monopoly:latest
 
 ## Usage
 
@@ -113,19 +102,6 @@ This is a multiplayer online Monopoly game developed using Java, Spring Boot, We
   - If the password does not match, authentication fails.
   - If the username is not found, the player is added to the database.
   - The login page serves both as signup and login.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature-branch`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin feature-branch`)
-5. Create a new Pull Request
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
 ## Contact
 
 For questions or feedback, please reach out to [your-email@example.com](mailto:your-email@example.com).
