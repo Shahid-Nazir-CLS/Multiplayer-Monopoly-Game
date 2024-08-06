@@ -176,13 +176,7 @@ public class GameService {
         Game game = findGameById(gameId);
 
         // get player index
-        int playerIndex = 0;
-        for(String pId : game.getPlayerIdList()){
-            if(pId.equals(playerId)){
-                break;
-            }
-            playerIndex++;
-        }
+        int playerIndex = game.getPlayerIdList().indexOf(playerId);
 
         // we will check if player was stuck at current token location where he is at before the move
         // if he is not stuck and has money > 0 then we move him to next location according to die and there will check if he is again stuck or not
@@ -348,13 +342,7 @@ public class GameService {
         Property currProperty = propertyService.getPropertyByCoordinates(playerDecisionDTO.getPropertyLocX(), playerDecisionDTO.getPropertyLocY());
         
         // get player index
-        int playerIndex = 0;
-        for(String pId : game.getPlayerIdList()){
-            if(pId.equals(playerId)){
-                break;
-            }
-            playerIndex++;
-        }
+        int playerIndex = game.getPlayerIdList().indexOf(playerId);
         int playerMoney = game.getPlayerMoneyList().get(playerIndex);
 
         // if property not bought and not rent paid and currentPlayer is owner of property -- can stay here for free
@@ -373,10 +361,27 @@ public class GameService {
             game.getPlayerMoneyList().set(playerIndex, playerMoney - currProperty.getCost());
             msgDecision = new GameTextMessage(null, game.getGameId(), playerId + " bought " + currProperty.getName() + " for $ " + currProperty.getCost() + ".");
 
-        // if rent paid then reduce from players money
+        // if rent paid then reduce from players money and check if player has owner then give him that rent
         }else if(playerDecisionDTO.isRentPaid()){
             game.getPlayerMoneyList().set(playerIndex, playerMoney - currProperty.getRent());
             msgDecision = new GameTextMessage(null, game.getGameId(), playerId + " paid rent of $ " + currProperty.getRent() + " for " + currProperty.getName() + ".");
+        
+            // Find the owner of the property
+            for (Map.Entry<String, List<String>> entry : game.getPropertyOwnerMap().entrySet()) {
+                String ownerId = entry.getKey();
+                List<String> ownedProperties = entry.getValue();
+
+                if (ownedProperties.contains(currProperty.getName())) {
+                    // Property is owned by this ownerId
+                    int ownerIndex = game.getPlayerIdList().indexOf(ownerId);
+                    int ownerMoney = game.getPlayerMoneyList().get(ownerIndex);
+
+                    // Add rent to the owner's money
+                    game.getPlayerMoneyList().set(ownerIndex, ownerMoney + currProperty.getRent());
+                    msgDecision = new GameTextMessage(null, game.getGameId(), playerId + " paid rent of $ " + currProperty.getRent() + " for " + currProperty.getName() + " to " + ownerId + ".");
+                    break; // Exit the loop once the owner is found
+                }
+            }
         }
         
         gameTextMessageService.addGamMessages(msgDecision);
@@ -384,12 +389,12 @@ public class GameService {
         Boolean isPlayerStuck = game.getIsPlayerStuckList().get(playerIndex);
         switchPlayer(game, playerIndex, isPlayerStuck);
         
+        // after rolling die check if any three players are bankrupt or stuck at some property then game is over
+        // and results will be displayed
         checkWin(game);
         propertyService.save(currProperty);
         gameRepository.save(game);
 
-        // after rolling die check if any three players are bankrupt or stuck at some property then game is over
-        // and results will be displayed
 
         return game;
     }
@@ -655,13 +660,7 @@ public class GameService {
         Property property = propertyService.getPropertyByName(sellPropertyDTO.getPropertyName());
 
         // get player index
-        int playerIndex = 0;
-        for(String pId : game.getPlayerIdList()){
-            if(pId.equals(sellPropertyDTO.getPlayerId())){
-                break;
-            }
-            playerIndex++;
-        }
+        int playerIndex = game.getPlayerIdList().indexOf(sellPropertyDTO.getPlayerId());
 
         // remove from player propertyOwnerMap
         game.getPropertyOwnerMap().get(sellPropertyDTO.getPlayerId()).remove(property.getName());

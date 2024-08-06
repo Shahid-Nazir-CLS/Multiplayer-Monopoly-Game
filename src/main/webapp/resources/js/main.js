@@ -259,8 +259,9 @@ async function onGameMessageReceived(gameMsgs) {
   gameMsgs.forEach((msg, index) => {
     // create a li and append to text area
     const msgTxt = msg.textContent;
+    const isGameWon = currGame.status.includes('WINS');
     // if msg contains take decision that means we have to show prompt and not append that msg
-    if (msgTxt.includes('TAKE DECISION')) {
+    if (msgTxt.includes('TAKE DECISION') && !isGameWon) {
       // show prompt for buy or rent
       if (currGame.currentPlayer === nickname) {
         showDecisionPrompt(currGame);
