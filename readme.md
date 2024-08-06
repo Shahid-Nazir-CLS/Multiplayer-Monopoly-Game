@@ -102,6 +102,6 @@ This is a multiplayer online Monopoly game developed using Java, Spring Boot, We
   - If the password does not match, authentication fails.
   - If the username is not found, the player is added to the database.
   - The login page serves both as signup and login.
-## Contact
 
-For questions or feedback, please reach out to [your-email@example.com](mailto:your-email@example.com).
+## Screenshots of gameplay
+
